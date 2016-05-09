@@ -1,0 +1,88 @@
+" Edit : 2016.03.15
+" Author : Pai-Mou Yang
+set ts=4 
+set sw=4 
+set et
+set smarttab
+set nu
+set autoindent
+set smartindent
+set incsearch
+
+"Set Ctags tag file
+"2016.03.15
+set tags=~/work/ALR_Dialing/8916L_2020132/tags
+
+"non effort
+highlight ColorColumn ctermbg=3
+
+
+" high light search pattern
+" default color is yallow
+" you can cancle high light by :noh
+set hlsearch
+
+
+"set for android log file : logcat
+filetype indent on
+au BufNewFile,BufRead *.lc set filetype=logcat
+au BufRead,BufNewFile *.logcat set filetype=logcat
+
+
+"-----[Plug-in]------
+" Indent Guides
+" Configuration for vim indent guides
+" usage:<leader>ig  cancle: type again
+" http://www.vim.org/scripts/script.php?script_id=3361
+" 2016.03.15
+"-----Configuration-----
+colorscheme default
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+"let g:indent_guides_enable_on_vim_startup = 1
+hi IndentGuidesOdd  ctermbg=3
+hi IndentGuidesEven ctermbg=4
+"hi IndentGuidesOdd  ctermbg=black
+"hi IndentGuidesEven ctermbg=darkgrey
+"-----END of plug-in-----
+
+
+"-----[Script]-----
+" A script to high light column
+" usage:,ch     cancle: type again
+map ,ch :call SetColorColumn()<CR>
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
+endfunction
+"-----END of script-----
+
+
+"-----[Plug-in]-----
+" vim-coffee-script
+" This plugin adds support for CoffeeScript.
+" http://www.vim.org/scripts/script.php?script_id=3590
+" https://github.com/kchmck/vim-coffee-script
+" 2016.04.14
+"-----END of script-----
+
+"-----[Plug-in]-----
+" rails.vim
+" This plugin adds for Ruby on Rails development.
+" http://www.vim.org/scripts/script.php?script_id=1567
+" https://github.com/tpope/vim-rails
+" #more introduction
+" http://www.sitepoint.com/effective-rails-development-vim/
+" 2016.04.19
+"-----END of script-----
+
+
+" This setting will conflict the colorscheme setting
+" So the [Plug-in] Indent Guides will fail
+set background=dark

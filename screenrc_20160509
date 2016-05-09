@@ -1,0 +1,91 @@
+# Don't display the copyright page.
+startup_message off
+
+# tab-completion flash in heading bar
+vbell off
+
+# keep scrollback n lines
+defscrollback 1000
+
+
+# 加入狀態列。
+caption always "%{=u .r} %-w%<%{=ub .Y}%n %t%{=u .r}%+w "
+hardstatus alwaysignore
+hardstatus alwayslastline "%{= .K} [%l]%<%=%{= .Y}$USER%{= .R}@%H %=%{= .m} %Y/%m/%d%{= .M} %0c "
+
+# 將預設編碼設為 UTF-8。
+defutf8 on
+
+# = 自訂熱鍵 =
+# # Alt + r : 清理當前視窗。 (C-a c)
+bindkey "^[r" clear
+
+# Alt + s : 進入複製/捲動模式。 (C-a esc)
+bindkey "^[s" copy
+
+# Alt + h : 將 screen 丟至背景執行。 (C-a d)
+bindkey "^[h" detach
+
+# Alt + i : 顯示所有執行中的 screen。 (C-a *)
+bindkey "^[i" displays
+
+# Alt + d : 關閉當前視窗。 (C-a k)
+bindkey "^[d" kill
+
+# Alt + L : 將 screen 上鎖。 (C-a C-x)
+bindkey "^[l" lockscreen
+
+# Alt + j : 切換至下個視窗。 (C-a n)
+bindkey "^[j" next
+bindkey "^[J" next
+
+# Alt + k : 切換至上個視窗。 (C-a p)
+bindkey "^[k" prev
+bindkey "^[K" prev
+
+# Alt + w : 關閉當前分割區。 (C-a X)
+bindkey "^[w" remove
+
+# Alt + t : 新增子視窗。(C-a c)
+bindkey "^[t" screen
+
+# Alt + o : 水平分割當前視窗。 (C-a S)
+bindkey "^[o" split
+
+# F2 : 自訂當前視窗標題。 (C-a A)
+bindkey -k k2 title
+
+# Alt + `/= : 切換子視窗0 ~ 子視窗12。
+bindkey "^[`" select 0
+bindkey "^[1" select 1
+bindkey "^[2" select 2
+bindkey "^[3" select 3
+bindkey "^[4" select 4
+bindkey "^[5" select 5
+bindkey "^[6" select 6
+bindkey "^[7" select 7
+bindkey "^[8" select 8
+bindkey "^[9" select 9
+bindkey "^[0" select 10
+bindkey "^[-" select 11
+bindkey "^[=" select 12
+
+# define Ctrl+ left/right arrow to change between screens
+termcapinfo xterm "ks=\E[?1l\E=:ku=\E[A:kd=\E[B:kl=\E[D:kr=\E[C:kh=\E[5~:kH=\E[F"
+
+# bind F7  to detach screen session from this terminal
+# bind F8 to kill current screen window.
+# bind F9 to create a new screen
+# bind F10 to rename current screen window
+# bind F11 to move to previous window
+# bind F12 to move to next window
+#
+# conflict with vimgdb
+#bindkey -k k7 detach
+bindkey -k k9 kill    #F9
+bindkey -k k; screen  #F10
+bindkey -k F1 prev    #F11
+bindkey -k F2 next    #F12
+
+
+#shelltitle '$ |bash'
